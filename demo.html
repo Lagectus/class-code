@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2 class="f">todo-list</h2>
+    <input type="text" id="taskInput" placeholder="enter a task...">
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+    <button onclick="gnrateColor()"> genrate Color</button>
+    <p id="colorCode"></p>
+    <h1 id="count">count</h1>
+    <button onclick="inc()">inc</button>
+    <button>dec</button>
+    <script>
+        let count =0;
+        function inc(){
+            count++;
+            document.getElementById("count").innerText = count
+        }
+        function gnrateColor(){
+            let clr=['red','green','blue']
+            let randomColor = `#`+Math.floor(Math.random()*16777215).toString(16)
+            document.body.style.backgroundColor = randomColor
+            document.getElementById('colorCode').innerText = randomColor
+        }
+        function addTask(){
+       let input = document.getElementById('taskInput');
+       let taskText = input.value.trim();
+       if(taskText === ""){
+        alert("please enter a task")
+        return
+       }
+       let li = document.createElement('li');
+       li.innerText = taskText
+       let deleteBtn = document.createElement('button');
+       deleteBtn.innerText = "del";
+       deleteBtn.onclick = function(){
+        li.remove();
+       }
+       li.appendChild(deleteBtn);
+
+       document.getElementById('taskList').appendChild(li)
+       input.value = ''
+    }
+    </script>
+</body>
+</html>
