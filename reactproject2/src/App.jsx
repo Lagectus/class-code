@@ -10,6 +10,7 @@ import ShowCounter from './components/Counter'
 import Stopwatch from './components/Stopwatch'
 import Products from './components/Products'
 import Counter1 from './components/Counter1'
+import ProductsComp from './components/ProductsComp'
 
 function App() {
 //   const [count, setCount] = useState(0)
@@ -24,7 +25,8 @@ function App() {
   return (
     <>
     {/* <Products/> */}
-    <Counter1/>
+    {/* <Counter1/> */}
+    <ProductsComp/>
     {/* <Stopwatch/> */}
     {/* <ShowCounter/> */}
     {/* <button onClick={()=>setClick((data)=>!data)}>click me</button> */}

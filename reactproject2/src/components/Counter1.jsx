@@ -25,6 +25,7 @@ const Counter1 = () => {
     const [state,dispatch] = useReducer(reducer,initalState)
     
 
+
   return (
     <>
   {state.count}
