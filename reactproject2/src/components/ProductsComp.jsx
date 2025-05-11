@@ -46,9 +46,12 @@ const ProductsComp = () => {
     setCounter(prev => prev > 0 ? prev - 1 : 0)
   }
 
-  const handleRemoveFromCart = (id) => {
+  const handleRemoveFromCart = (id,qty) => {
     setCartProduct(prevCart => prevCart.filter(p => p.id !== id))
-    setCounter(prev => prev - 1)
+    setCounter(prev => prev - qty)
+  }
+  const calTotalAmount = ()=>{
+   return cartProuct.reduce((acc,val)=>acc+(val.price * val.qty1),0)
   }
   
   useEffect(()=>{
@@ -91,9 +94,15 @@ const ProductsComp = () => {
           return (
             <div key={prod.id}>
               <p>{prod.title}</p>
+              <button onClick={()=>handleIncrement(prod.id)}>inc</button>
+              <b>{prod.qty1}</b>
+              <button onClick={()=>handleDecrement(prod.id)}>dec</button>
+              <button onClick={()=>handleRemoveFromCart(prod.id,prod.qty1)}>remove</button>
+              <b>{prod.price} price {prod.qty1 * prod.price} </b>
             </div>
           )
         })}
+        {<p>total{Math.round(calTotalAmount())}</p>}
         </div>)}
     </div>
   )
