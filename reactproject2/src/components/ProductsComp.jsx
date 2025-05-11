@@ -8,19 +8,49 @@ const ProductsComp = () => {
   const [cartProuct,setCartProduct] = useState([])
   const [isShow,setIshow] = useState(false);
 
-  const handleAddToCart =(data)=>{
-    const isExist = cartProuct.find(p=>p.id ===data.id);
-    setCounter(counter+1);
-    if(isExist){
-      console.log("if", counter,"dddddd",cartProuct);
-      return setCartProduct(...cartProuct ,cartProuct.map(p=>p.id ===  data.id?{...p,qty1:p.qty1+1}:p));
-
-    }
-    else{
-      setCartProduct([...cartProuct,{...data,qty1:1}])
-      console.log("else", counter,"dddddd",cartProuct);
+  const handleAddToCart = (data) => {
+    const isExist = cartProuct.find(p => p.id === data.id);
+    setCounter(prev => prev + 1);  // Updating counter properly using the previous state value.
+    
+    if (isExist) {
+      // If the product already exists in the cart, update its quantity.
+      setCartProduct(prevCart => 
+        prevCart.map(p => 
+          p.id === data.id ? { ...p, qty1: p.qty1 + 1 } : p
+        )
+      );
+      console.log(cartProuct,"dddss");
+    } else {
+      console.log(cartProuct,"ddd");
+      
+      // If the product doesn't exist, add it to the cart with qty1 set to 1.
+      setCartProduct(prevCart => [...prevCart, { ...data, qty1: 1 }]);
     }
   }
+
+  const handleIncrement = (id) => {
+    setCartProduct(prevCart =>
+      prevCart.map(p =>
+        p.id === id ? { ...p, qty1: p.qty1 + 1 } : p
+      )
+    )
+    setCounter(prev => prev + 1)
+  }
+
+  const handleDecrement = (id) => {
+    setCartProduct(prevCart =>
+      prevCart.map(p =>
+        p.id === id && p.qty1 > 1 ? { ...p, qty1: p.qty1 - 1 } : p
+      )
+    )
+    setCounter(prev => prev > 0 ? prev - 1 : 0)
+  }
+
+  const handleRemoveFromCart = (id) => {
+    setCartProduct(prevCart => prevCart.filter(p => p.id !== id))
+    setCounter(prev => prev - 1)
+  }
+  
   useEffect(()=>{
     dispatch({type:'FETCH_START'})
     fetch('https://fakestoreapi.com/products')
