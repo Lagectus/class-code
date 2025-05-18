@@ -1,8 +1,9 @@
 import React from 'react'
+import Comp3 from './Comp3'
 
-const Comp2 = () => {
+const Comp2 = ({x}) => {
   return (
-    <div>Comp2</div>
+    <div><Comp3 y={x}/></div>
   )
 }
 

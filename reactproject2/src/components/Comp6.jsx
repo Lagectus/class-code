@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { productStore } from '../App';
 
-const Comp6 = ({sagar}) => {
+const Comp6 = () => {
+  const  {count,setCount}= useContext(productStore)
+  console.log({count,setCount});
+  
   return (
-    <div> <button onClick={()=>sagar((curVal)=>curVal+1)}>inc</button></div>
+    <div>this is my comp 6 {count} </div>
   )
 }
 

@@ -1,8 +1,9 @@
 import React from 'react'
+import Comp4 from './Comp4'
 
-const Comp3 = ({decFN}) => {
+const Comp3 = ({y}) => {
   return (
-    <div><button onClick={()=>decFN((curVal)=>curVal-1)}>Dec</button></div>
+    <div><Comp4 z={y}/></div>
   )
 }
 

@@ -10,7 +10,7 @@ const ProductsComp = () => {
 
   const handleAddToCart = (data) => {
     const isExist = cartProuct.find(p => p.id === data.id);
-    setCounter(prev => prev + 1);  // Updating counter properly using the previous state value.
+    // setCounter(prev => prev + 1);  // Updating counter properly using the previous state value.
     
     if (isExist) {
       // If the product already exists in the cart, update its quantity.
@@ -88,7 +88,7 @@ const ProductsComp = () => {
           </div>
         ))}
       </div>
-        <h1 style={{position:'fixed', top:0,right:0}} onClick={()=>setIshow(!isShow)}>cart { counter}</h1>
+        <h1 style={{position:'fixed', top:0,right:0}} onClick={()=>setIshow(!isShow)}>cart { cartProuct.length>1 &&  cartProuct.reduce((acc,val)=>acc+val.qty1,0)}</h1>
         {isShow && (<div  style={{position:'fixed', top:'97px',right:0}} >
           {cartProuct && cartProuct.map((prod)=>{
           return (

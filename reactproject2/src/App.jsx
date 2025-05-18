@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,9 +11,12 @@ import Stopwatch from './components/Stopwatch'
 import Products from './components/Products'
 import Counter1 from './components/Counter1'
 import ProductsComp from './components/ProductsComp'
+import Comp6 from './components/Comp6'
+
+export const productStore = createContext()
 
 function App() {
-//   const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
 //   const [click,setClick] = useState(true);
 //  useEffect(()=>{
 //   console.log(`this is my useEffect ${count}${click}` );
@@ -26,7 +29,11 @@ function App() {
     <>
     {/* <Products/> */}
     {/* <Counter1/> */}
-    <ProductsComp/>
+    {/* <ProductsComp/> */}
+<productStore.Provider value={{count,setCount}}>
+    <Comp1/>
+    <Comp6/>
+    </productStore.Provider>
     {/* <Stopwatch/> */}
     {/* <ShowCounter/> */}
     {/* <button onClick={()=>setClick((data)=>!data)}>click me</button> */}
